@@ -1,13 +1,11 @@
-FROM python:3.6
+FROM python:3-alpine3.15
 
-COPY . /src
+WORKDIR /app
 
-COPY ./requirements.txt /src/requirements.txt
-
-WORKDIR src
-
-EXPOSE 8000:8000
+COPY . /app
 
 RUN pip install -r requirements.txt
 
-CMD [ "python", "main.py" ]
+EXPOSE 3000
+
+CMD python ./main.py
