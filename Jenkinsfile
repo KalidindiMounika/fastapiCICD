@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+                docker { image 'python:3-alpine3.15' }
+            }
 
     stages {
         stage('checkout') {
@@ -8,9 +10,7 @@ pipeline {
             }
         }
         stage('build') {
-            agent {
-                docker { image 'python:3-alpine3.15' }
-            }
+            
             steps {
                 git branch: 'main', credentialsId: 'ab586125-4b2d-4ffe-93e4-0b4e41663633', url: 'https://github.com/KalidindiMounika/fastapiCICD.git'
                 sh 'python main.py'
