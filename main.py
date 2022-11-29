@@ -1,12 +1,11 @@
-from typing import Union
+from flask import Flask
 
-from fastapi import FastAPI
-from pydantic import BaseModel
-from src.ConnectStorage import storageConnect
+app = Flask(__name__)
 
-app = FastAPI()
 
-@app.get("/")
-def read_files():
-    storageConnect.log_download()
-    return "Download was successful"
+@app.route("/")
+def index():
+    return "{Hey! .., welcome to flask app}"
+
+if __name__ == "__main__":
+    app.run(host = "0.0.0.0",port = 3000,debug = True)
