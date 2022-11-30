@@ -6,7 +6,8 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build "${python-flask}:${latest}"
-              }
-            }
+                        }
+                   }
         }
     }  
+}
