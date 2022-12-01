@@ -9,15 +9,15 @@ pipeline {
                     dockerImage = docker.build("python-flask:latest")
                         }
                    }
-        }
+                                       } 
         stage('Test') {
             steps {
                 script {
-                        bat echo %docker run -d -p 3000:3000 python-flask:latest%
+                        docker.run("-p 3000:3000 python-flask:latest")
                         }
                  }
                     }
         
         
-    }  
-}
+           }  
+           }
