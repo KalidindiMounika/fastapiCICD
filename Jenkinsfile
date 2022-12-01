@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                        docker.run(dockerImage)
+                        bat echo %docker run -d -p 3000:3000 python-flask:latest%
                         }
                  }
                     }
