@@ -10,6 +10,13 @@ pipeline {
                         }
                    }
         }
+	 stage('Test') {
+            steps {
+                script {
+                    bat '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker" run -d -p 3000:3000 python-flask:latest'
+                        }
+                   }
+        }
     }  
 	
 }
