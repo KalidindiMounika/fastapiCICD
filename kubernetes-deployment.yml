@@ -1,14 +1,34 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: api
-  labels:
-    app: api
+  name: jhooq-springboot
 spec:
-  containers:
-    -name: api
-      image: mounika30/python-flask:latest
-      ports:
-        -name: api-port
-          containerPort: 3000
-          protocol: TCP
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jhooq-springboot
+  template:
+    metadata:
+      labels:
+        app: jhooq-springboot
+    spec:
+      containers:
+        - name: springboot
+          image: mounika30/python-flask:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhooq-springboot
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: jhooq-springboot
