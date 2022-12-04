@@ -1,34 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jhooq-test-cluster
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: jhooq-test-cluster
-  template:
-    metadata:
-      labels:
-        app: jhooq-test-cluster
-    spec:
-      containers:
-        - name: flaskapi
-          image: mounika30/python-flask:latest
-          ports:
-            - containerPort: 8080
-          env:
-            - name: PORT
-              value: "8080"
----
 apiVersion: v1
-kind: Service
+kind: Pod
 metadata:
-  name: jhooq-test-cluster
+  name: api
+  labels:
+    app: api
 spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-      targetPort: 8080
-  selector:
-    app: jhooq-test-cluster
+  containers:
+    -name: api
+      image: mounika30/python-flask:latest
+      ports:
+        -name: api-port
+          containerPort: 3000
+          protocol: TCP
