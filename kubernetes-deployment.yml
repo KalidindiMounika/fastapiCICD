@@ -1,9 +1,7 @@
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: python-cluster
-  labels:
-    app: python-cluster
 spec:
   replicas: 3
   selector:
@@ -15,7 +13,7 @@ spec:
         app: python-cluster
 spec:
   containers:
-    -name: api
+    -name: python-cluster
       image: mounika30/python-flask:latest
       ports:
         -name: api-port
