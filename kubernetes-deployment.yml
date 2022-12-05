@@ -2,14 +2,22 @@ apiVersion: v1
 kind: Deployment
 metadata:
   name: python-cluster
-  labels:
-    app: python-cluster
 spec:
-  containers:
-    -name: flaskapi
-      image: mounika30/python-flask:latest
-      ports:
-        -name: api-port
-          containerPort: 8080
-          protocol: TCP
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-cluster
+  template:
+    metadata:
+      labels:
+        app: python-cluster
+    spec:
+      containers:
+        - name: flaskapi
+          image: mounika30/python-flask:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
 
