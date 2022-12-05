@@ -4,6 +4,9 @@ metadata:
   name: python-cluster-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels: python-cluster
+      app: 
   template:
     metadata:
       labels:
