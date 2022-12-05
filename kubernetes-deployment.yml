@@ -1,16 +1,16 @@
-apiVersion: client.authentication.k8s.io/v1beta1
+apiVersion: client.authentication.k8s.io/v1alpha1
 kind: Deployment
 metadata:
-  name: jhooq-test-cluster
+  name: python-cluster
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: jhooq-test-cluster
+      app: python-cluster
   template:
     metadata:
       labels:
-        app: jhooq-test-cluster
+        app: python-cluster
     spec:
       containers:
         - name: springboot
@@ -21,14 +21,14 @@ spec:
             - name: PORT
               value: "8080"
 ---
-apiVersion: v1beta1
+apiVersion: v1alpha1
 kind: Service
 metadata:
-  name: jhooq-test-cluster
+  name: python-cluster
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: jhooq-test-cluster
+    app: python-cluster
