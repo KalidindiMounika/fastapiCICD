@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Deployment
 metadata:
@@ -11,15 +12,9 @@ spec:
     metadata:
       labels:
         app: python-cluster
-spec:
-  containers:
-    -name: python-cluster
-      image: mounika30/python-flask:latest
-      ports:
-        -name: api-port
-          containerPort: 5000
-          protocol: TCP
-
-
-
-
+    spec:
+      containers:
+        - name: springboot
+          image: mounika30/python-flask:latest
+          ports:
+            - containerPort: 3000
