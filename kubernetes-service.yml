@@ -9,4 +9,4 @@ spec:
   ports:
     - name: my-apache-port
       port: 3000
-      targetPort: 80
+      targetPort: 3000
