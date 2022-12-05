@@ -1,20 +1,19 @@
----
-apiVersion: client.authentication.k8s.io/v1alpha1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: python-cluster
+  name: python-cluster-deployment
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: python-cluster
+  replicas: 1
   template:
     metadata:
       labels:
-        app: python-cluster
+        app: my-app
     spec:
       containers:
-        - name: springboot
-          image: mounika30/python-flask:latest
-          ports:
-            - containerPort: 3000
+      - name: my-apache-container1
+        image: mounika30/python-flask:latest
+        ports:
+        - containerPort: 3000
+
+
+
