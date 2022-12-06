@@ -12,8 +12,9 @@ spec:
       labels:
         app: my-app
     spec:
+      hostNetwork: true
       containers:
-      - name: my-apache-container1
+      - name: my-app-container
         image: mounika30/python-flask:latest
         ports:
         - containerPort: 3000
